@@ -174,11 +174,14 @@ else(MSVC)
 endif(MSVC)
 
 check_c_source_compiles(
-    "
-        #include <stdlib.h>
-        void f(void) __attribute__ ((visibility(\"hidden\")));
-        int main(void) {return 0;}
-    "
+    [[[
+        #define ZLIB_INTERNAL __attribute__((visibility ("hidden")))
+        int ZLIB_INTERNAL foo;
+        int main()
+        {
+          return 0;
+        }
+    ]]]
     HAVE___ATTR__VIS_HIDDEN)
 
 unset(CMAKE_COMPILE_FLAGS)
