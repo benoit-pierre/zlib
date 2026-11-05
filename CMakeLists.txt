@@ -176,7 +176,7 @@ endif(MSVC)
 check_c_source_compiles(
     "
         #include <stdlib.h>
-        static void f(void) __attribute__ ((visibility(\"hidden\")));
+        void f(void) __attribute__ ((visibility(\"hidden\")));
         int main(void) {return 0;}
     "
     HAVE___ATTR__VIS_HIDDEN)
